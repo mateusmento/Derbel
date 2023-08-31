@@ -18,7 +18,7 @@ function formatDate(date: string | Moment) {
   if (!date) return;
   return moment().startOf('day').isSame(moment(date).startOf('day'))
     ? moment(date).format('H:mm A')
-    : moment(date).format('MMM DD');
+    : moment(date).format('MMM D');
 }
 </script>
 
@@ -68,6 +68,7 @@ function formatDate(date: string | Moment) {
   flex-direction: column;
   flex: 1;
   gap: 10px;
+  margin-right: 5px;
 }
 
 .contact-name {
