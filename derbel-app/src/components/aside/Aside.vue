@@ -34,10 +34,12 @@ async function addContact() {
         <div class="user-name">{{ authStore.user?.name }}</div>
       </div>
       <Tabs />
-      <div class="search-contacts" @click="usernameInputEl?.focus()">
+      <form class="search-contacts" @submit.prevent="addContact" @click="usernameInputEl?.focus()">
         <input v-model="username" placeholder="Search for a contact" ref="usernameInputEl" />
-        <IconSearch @click="addContact" />
-      </div>
+        <button class="add-contact-btn" type="submit">
+          <IconSearch />
+        </button>
+      </form>
     </header>
     <ul class="contacts">
       <template v-for="(contact, i) of contacts" :key="contact.id">
@@ -117,6 +119,12 @@ header {
 
 .search-contacts input::placeholder {
   color: #464646;
+}
+
+.add-contact-btn {
+  background-color: transparent;
+  padding: 0;
+  border: none;
 }
 
 .contacts {
