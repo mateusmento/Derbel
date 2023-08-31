@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  derbel-postgres:
+    image: postgres:14
+    container_name: derbel-postgres
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - derbel-postgres:/var/lib/postgresql/data
+    env_file:
+      - .env
+    labels:
+      - traefik.enable=false
+  derbel-pgadmin:
+    image: dpage/pgadmin4
+    container_name: derbel-pgadmin
+    restart: always
+    ports:
+      - 3300:3300
+    volumes:
+      - derbel-pgadmin:/var/lib/pgadmin
+    env_file:
+      - .env
+    labels:
+      - traefik.enable=false
+  derbel-peerjs:
+    image: peerjs/peerjs-server
+    container_name: derbel-peerjs
+    command: peerjs -p 3001
+    restart: always
+    ports:
+      - 3001:3001
+    labels:
+      - traefik.enable=false
+  derbel-redis:
+    image: redis:7
+    container_name: derbel-redis
+    restart: always
+    ports:
+      - 6379:6379
+    labels:
+      - traefik.enable=false
+  # derbel-nginx:
+  #   image: nginx:1.23.3-alpine
+  #   container_name: derbel-nginx
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ./nginx/default.conf:/etc/nginx/config.d/default.conf
+  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+  #   extra_hosts:
+  #     - 'host.docker.internal:host-gateway'
+  derbel-traefik:
+    image: traefik:2.10
+    container_name: derbel-traefik
+    command: --api.insecure=true --providers.docker
+    ports:
+      - 3000:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  derbel-api:
+    build: .
+    image: derbel-api
+    volumes:
+      - .:/usr/app
+    labels:
+      - 'traefik.http.routers.derbel.rule=PathPrefix(`/`)'
+      - traefik.http.services.derbel.loadBalancer.sticky.cookie.name=server_id
+      - traefik.http.services.derbel.loadBalancer.sticky.cookie.httpOnly=true
+
+volumes:
+  derbel-postgres:
+    name: derbel-postgres
+  derbel-pgadmin:
+    name: derbel-pgadmin

@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "derbel-api"
+		},
+		{
+			"path": "derbel-app"
+		}
+	],
+	"settings": {
+		"jest.disabledWorkspaceFolders": [
+			"derbel-app"
+		]
+	}
+}
