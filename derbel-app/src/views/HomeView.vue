@@ -76,9 +76,9 @@ async function leftMeeting() {
     <main class="main-section flex-1 rounded-r-xl bg-slate-100">
       <TransitionGroup v-if="openContact">
         <Meeting
-          v-if="openContact.meeting"
+          v-if="meetingStore.meeting"
           v-show="meetingStore.meeting"
-          :meetingId="openContact.meeting.id"
+          :meetingId="meetingStore.meeting.id"
           @meeting-ended="meetingEnded"
           @left-meeting="leftMeeting"
           :key="1"
