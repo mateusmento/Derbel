@@ -71,10 +71,10 @@ function stopMicrophone() {
 <template>
   <section class="meeting">
     <template v-if="attendees.length === 0">
-      <div class="camera-with-controls flex gap-5 h-full">
+      <div class="meeting-conference">
         <video
           v-if="mycamera"
-          class="rounded-3xl h-full"
+          class="attendee-camera rounded-3xl"
           autoplay
           muted
           :ref="(el) => el && ((el as HTMLVideoElement).srcObject = mycamera)"
@@ -90,11 +90,11 @@ function stopMicrophone() {
       </div>
     </template>
     <template v-else-if="attendees.length === 1">
-      <div class="camera-with-controls flex gap-5 h-full">
+      <div class="meeting-conference">
         <video
           v-for="attendee in attendees"
           :key="attendee.remoteId"
-          class="h-full rounded-3xl"
+          class="attendee-camera rounded-3xl"
           autoplay
           :ref="(el) => el && ((el as HTMLVideoElement).srcObject = attendee.camera)"
         />
@@ -106,15 +106,15 @@ function stopMicrophone() {
           @leave-meeting="leaveMeeting"
           @end-meeting="endMeeting"
         />
-      </div>
 
-      <video
-        v-if="mycamera"
-        class="my-camera rounded-3xl w-60"
-        autoplay
-        muted
-        :ref="(el) => el && ((el as HTMLVideoElement).srcObject = mycamera)"
-      />
+        <video
+          v-if="mycamera"
+          class="my-camera rounded-3xl w-60"
+          autoplay
+          muted
+          :ref="(el) => el && ((el as HTMLVideoElement).srcObject = mycamera)"
+        />
+      </div>
     </template>
     <template v-else>
       <div class="relative h-full" style="height: calc(100% - 180px)">
@@ -150,30 +150,31 @@ function stopMicrophone() {
 <style scoped>
 .meeting {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 10px;
-  position: relative;
+  height: 100%;
   padding: 10px;
-  height: 100%;
-  width: fit-content;
-  margin: auto;
 }
 
-.camera-with-controls {
+.meeting-conference {
   position: relative;
-  width: fit-content;
-}
-
-.camera-with-controls video {
   height: 100%;
-}
+  aspect-ratio: 4 / 3;
 
-.my-camera {
-  position: absolute;
-  top: 40px;
-  right: 40px;
-  border: 2px solid #dddddd44;
+  .attendee-camera {
+    height: 100%;
+  }
+
+  .meeting-controls {
+    position: absolute;
+    width: calc(100% - 20px);
+    bottom: 0;
+  }
+
+  .my-camera {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    border: 2px solid #dddddd44;
+  }
 }
 </style>

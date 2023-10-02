@@ -47,13 +47,11 @@ const emit = defineEmits(['toggle-camera', 'toggle-microphone', 'leave-meeting',
 
 <style scoped>
 .meeting-controls {
-  position: absolute;
   padding: 10px;
   margin: 10px;
   border-radius: calc(1.5rem - 10px);
+  height: fit-content;
   /* background: #dddddd44; */
   /* backdrop-filter: blur(3px); */
-  bottom: 0;
-  width: calc(100% - 20px);
 }
 </style>
