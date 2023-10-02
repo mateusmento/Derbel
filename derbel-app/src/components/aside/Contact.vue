@@ -34,7 +34,7 @@ function formatDate(date: string | Moment) {
       </div>
       <small class="contact-last-message line-fit">{{ contact.lastMessage?.text }}</small>
     </div>
-    <div v-if="contact.meeting && !meetingStore.meeting" class="flex gap-5">
+    <div v-if="contact.meeting && !meetingStore.meeting" class="accept-call flex gap-5">
       <button @click.stop="emit('join-meeting')" class="p-2 border-none rounded-full bg-green-500">
         <IconAcceptCall />
       </button>
@@ -45,6 +45,7 @@ function formatDate(date: string | Moment) {
 <style scoped>
 .contact {
   display: flex;
+  align-items: flex-start;
   gap: 10px;
   padding: 10px;
   border-radius: 5px 15px 15px 15px;
@@ -57,7 +58,7 @@ function formatDate(date: string | Moment) {
 }
 
 .contact-photo {
-  width: 30px;
+  min-width: 30px;
   height: 30px;
   background-color: #b2bdbd;
   border-radius: 40px;
@@ -69,6 +70,7 @@ function formatDate(date: string | Moment) {
   flex: 1;
   gap: 10px;
   margin-right: 5px;
+  width: auto;
 }
 
 .contact-name {
@@ -80,8 +82,14 @@ function formatDate(date: string | Moment) {
 }
 
 .contact-last-message {
+  width: 200px;
+
   font-size: 14px;
-  height: 1em;
+  line-height: 16px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .last-message-time {
@@ -90,5 +98,9 @@ function formatDate(date: string | Moment) {
 
 small {
   font-size: 12px;
+}
+
+.accept-call {
+  margin-block: auto;
 }
 </style>
