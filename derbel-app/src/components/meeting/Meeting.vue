@@ -159,22 +159,22 @@ function stopMicrophone() {
   position: relative;
   height: 100%;
   aspect-ratio: 4 / 3;
+}
 
-  .attendee-camera {
-    height: 100%;
-  }
+.attendee-camera {
+  height: 100%;
+}
 
-  .meeting-controls {
-    position: absolute;
-    width: calc(100% - 20px);
-    bottom: 0;
-  }
+.meeting-controls {
+  position: absolute;
+  width: calc(100% - 20px);
+  bottom: 0;
+}
 
-  .my-camera {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    border: 2px solid #dddddd44;
-  }
+.my-camera {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  border: 2px solid #dddddd44;
 }
 </style>
