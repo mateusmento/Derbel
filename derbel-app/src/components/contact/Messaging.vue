@@ -111,7 +111,7 @@ function formatDate(date: string | Moment) {
           <template v-if="i === 0">
             <div class="flex justify-between gap-5">
               <small class="message-speaker">{{
-                messageGroup.speakerId === authStore.user?.id ? ' You' : message.speaker.name
+                messageGroup.speakerId === authStore.user?.id ? ' You' : message.speaker?.name
               }}</small>
               <small class="message-sent-at ml-auto">{{ formatDate(message.sentAt) }}</small>
             </div>
