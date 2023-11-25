@@ -167,6 +167,7 @@ function formatDate(date: string | Moment) {
 
   gap: 10px;
   min-width: 220px;
+  max-width: 680px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
   padding: 12px;
 }
@@ -202,10 +203,12 @@ function formatDate(date: string | Moment) {
 
 .message-sent-at {
   font-size: 10px;
+  white-space: nowrap;
 }
 
 .message-text {
   font-size: 14px;
+  line-height: 1.3;
 }
 
 .new-message {
