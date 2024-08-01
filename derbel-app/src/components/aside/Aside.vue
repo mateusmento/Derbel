@@ -35,7 +35,7 @@ async function addContact() {
       </div>
       <Tabs />
       <form class="search-contacts" @submit.prevent="addContact" @click="usernameInputEl?.focus()">
-        <input v-model="username" placeholder="Search for a contact" ref="usernameInputEl" />
+        <input v-model="username" placeholder="Add a contact (enter username)" ref="usernameInputEl" />
         <button class="add-contact-btn" type="submit">
           <IconSearch />
         </button>
