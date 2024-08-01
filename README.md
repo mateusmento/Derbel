@@ -19,17 +19,33 @@ Make sure to install dependencies with `npm install` and having docker engine in
 Run derbel-api
 
 ```bash
-$ cd derbel-api
-$ npm install
-$ docker compose up
+cd derbel-api
+npm install
+echo "APP_PORT=3000" > .env
+echo "CORS_ORIGINS=http://localhost:8080" >> .env
+echo "COOKIE_SECRET=hg1jm2gf12jhg" >> .env
+echo "PASSWORD_ROUNDS=10" >> .env
+echo "JWT_SECRET=jhghf234gf3" >> .env
+echo "JWT_EXPIRES_IN=1h" >> .env
+echo "DATABASE_HOST=derbel-postgres" >> .env
+echo "DATABASE_MIGRATION_HOST=localhost" >> .env
+echo "DATABASE_PORT=5432" >> .env
+echo "POSTGRES_DB=derbel" >> .env
+echo "POSTGRES_USER=derbel" >> .env
+echo "POSTGRES_PASSWORD=derbel" >> .env
+echo "PGADMIN_DEFAULT_EMAIL=fake@email.com" >> .env
+echo "PGADMIN_DEFAULT_PASSWORD=123" >> .env
+echo "PGADMIN_LISTEN_PORT=3300" >> .env
+echo "REDIS_URL=redis://derbel-redis:6379" >> .env
+docker compose up
 ```
 
 Run derbel-app
 
 ```bash
-$ cd derbel-app
-$ npm install
-$ npm run dev
+cd derbel-app
+npm install
+npm run dev
 ```
 
 ## Architecture
