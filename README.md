@@ -16,7 +16,7 @@ This project demonstrates skills in creating:
 
 Make sure to install dependencies with `npm install` and having docker engine in your system.
 
-Run derbel-api
+### Run derbel-api
 
 ```bash
 cd derbel-api
@@ -40,7 +40,15 @@ echo "REDIS_URL=redis://derbel-redis:6379" >> .env
 docker compose up
 ```
 
-Run derbel-app
+Then you should wait for the postgres server to launch, open another terminal and run the database migrations with:
+
+```bash
+npm run migration:run
+```
+
+And the api should be ready for use at this point.
+
+### Run derbel-app
 
 ```bash
 cd derbel-app
